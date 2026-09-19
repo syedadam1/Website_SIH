@@ -93,7 +93,7 @@ body {
 
     place-items: center;
 
-    font-size: 21px;
+    font-size: 28px;
 
     font-weight: bold;
 
@@ -102,7 +102,7 @@ body {
 
 .logo h2 {
 
-    font-size: 17px;
+    font-size: 28px;
 
     letter-spacing: 3px;
 
@@ -111,18 +111,18 @@ body {
 
 .logo p {
 
-    font-size: 9px;
+    font-size: 15px;
 
     color: #91a8bc;
 
-    margin-top: 3px;
+    margin-top: 10px;
 
 }
 
 
 .menu-title {
 
-    font-size: 9px;
+    font-size: 15px;
 
     color: #718ba2;
 
@@ -151,9 +151,9 @@ body {
 
     cursor: pointer;
 
-    margin-bottom: 3px;
+    margin-bottom: 5px;
 
-    font-size: 12px;
+    font-size: 16px;
 
 }
 
@@ -180,7 +180,7 @@ body {
 
     margin-top: auto;
 
-    padding: 13px;
+    padding: 15px;
 
     border: 1px solid #2b4c65;
 
@@ -213,7 +213,7 @@ body {
 
     display: block;
 
-    font-size: 10px;
+    font-size: 15px;
 
 }
 
@@ -222,7 +222,7 @@ body {
 
     color: #718ba2;
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
@@ -231,7 +231,7 @@ body {
 
     text-align: center;
 
-    font-size: 8px;
+    font-size: 15px;
 
     color: #647e94;
 
@@ -280,7 +280,7 @@ body {
 
     font-weight: bold;
 
-    font-size: 10px;
+    font-size: 15px;
 
     letter-spacing: 1px;
 
@@ -306,7 +306,7 @@ body {
 
     gap: 8px;
 
-    font-size: 11px;
+    font-size: 18px;
 
 }
 
@@ -326,7 +326,7 @@ body {
 
     place-items: center;
 
-    font-size: 9px;
+    font-size: 16px;
 
     font-weight: bold;
 
@@ -430,7 +430,7 @@ body {
 
     line-height: 1.7;
 
-    font-size: 13px;
+    font-size: 19px;
 
     max-width: 650px;
 
@@ -462,7 +462,7 @@ body {
 
     cursor: pointer;
 
-    font-size: 10px;
+    font-size: 19px;
 
     font-weight: bold;
 
@@ -483,7 +483,7 @@ body {
 
     cursor: pointer;
 
-    font-size: 10px;
+    font-size: 19px;
 
     font-weight: bold;
 
@@ -595,14 +595,14 @@ body {
 
 .section-header h2 {
 
-    font-size: 19px;
+    font-size: 25px;
 
 }
 
 
 .section-header p {
 
-    font-size: 10px;
+    font-size: 19px;
 
     color: var(--muted);
 
@@ -623,7 +623,7 @@ body {
 
     border-radius: 20px;
 
-    font-size: 8px;
+    font-size: 18px;
 
     font-weight: bold;
 
@@ -729,14 +729,14 @@ body {
 
     color: var(--muted);
 
-    font-size: 9px;
+    font-size: 15px;
 
 }
 
 
 .card h2 {
 
-    font-size: 22px;
+    font-size: 28px;
 
     margin: 5px 0;
 
@@ -745,7 +745,7 @@ body {
 
 .card span {
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
@@ -804,7 +804,7 @@ body {
 
     color: var(--muted);
 
-    font-size: 9px;
+    font-size: 15px;
 
     margin-top: 4px;
 
@@ -944,7 +944,7 @@ body {
 
     border-radius: 5px;
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
@@ -984,7 +984,7 @@ body {
 
     gap: 9px;
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
@@ -1043,7 +1043,7 @@ canvas {
 
     border-bottom: 1px solid var(--border);
 
-    font-size: 9px;
+    font-size: 15px;
 
 }
 
@@ -1078,7 +1078,7 @@ canvas {
 
     border-radius: 7px;
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
@@ -1087,7 +1087,7 @@ canvas {
 
     display: block;
 
-    font-size: 9px;
+    font-size: 15px;
 
 }
 
@@ -1098,7 +1098,7 @@ canvas {
 
     color: var(--muted);
 
-    font-size: 8px;
+    font-size: 15px;
 
     margin-top: 3px;
 
@@ -1107,7 +1107,7 @@ canvas {
 
 .action > span {
 
-    font-size: 8px;
+    font-size: 15px;
 
     color: var(--orange);
 
@@ -1133,7 +1133,7 @@ canvas {
 
 .page-heading h1 {
 
-    font-size: 32px;
+    font-size: 36px;
 
     margin: 10px 0;
 
@@ -1144,7 +1144,7 @@ canvas {
 
     color: var(--muted);
 
-    font-size: 11px;
+    font-size: 18px;
 
     max-width: 750px;
 
@@ -1182,7 +1182,7 @@ canvas {
 
     color: var(--muted);
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
@@ -1197,7 +1197,7 @@ select {
 
     background: white;
 
-    font-size: 9px;
+    font-size: 15px;
 
 }
 
@@ -1321,14 +1321,14 @@ select {
 
     display: block;
 
-    font-size: 9px;
+    font-size: 15px;
 
 }
 
 
 .zone span {
 
-    font-size: 8px;
+    font-size: 15px;
 
     color: #c4d4df;
 
@@ -1396,7 +1396,7 @@ select {
 
     gap: 6px;
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
@@ -1420,7 +1420,7 @@ table {
 
     margin-top: 15px;
 
-    font-size: 9px;
+    font-size: 15px;
 
 }
 
@@ -1440,7 +1440,7 @@ th {
 
     color: var(--muted);
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
@@ -1499,7 +1499,7 @@ th {
 
     margin: 22px 0;
 
-    font-size: 9px;
+    font-size: 15px;
 
 }
 
@@ -1620,7 +1620,7 @@ th {
 
 .risk-card strong {
 
-    font-size: 10px;
+    font-size: 15px;
 
 }
 
@@ -1657,7 +1657,7 @@ th {
 
     margin: 16px 0;
 
-    font-size: 9px;
+    font-size: 15px;
 
 }
 
@@ -1699,7 +1699,7 @@ th {
 
 .recommend-card > span {
 
-    font-size: 8px;
+    font-size: 15px;
 
     font-weight: bold;
 
@@ -1712,7 +1712,7 @@ th {
 
     margin: 17px 0 9px;
 
-    font-size: 16px;
+    font-size: 20px;
 
 }
 
@@ -1721,7 +1721,7 @@ th {
 
     color: var(--muted);
 
-    font-size: 10px;
+    font-size: 16px;
 
     line-height: 1.7;
 
@@ -1808,7 +1808,7 @@ th {
 
     border-radius: 8px;
 
-    font-size: 9px;
+    font-size: 15px;
 
     font-weight: bold;
 
@@ -1819,7 +1819,7 @@ th {
 
     margin: 14px 0 7px;
 
-    font-size: 13px;
+    font-size: 20px;
 
 }
 
@@ -1828,7 +1828,7 @@ th {
 
     color: var(--muted);
 
-    font-size: 8px;
+    font-size: 15px;
 
     margin-bottom: 13px;
 
@@ -1845,7 +1845,7 @@ th {
 
     color: #627687;
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
@@ -1856,7 +1856,7 @@ th {
 
     color: #73a0b9;
 
-    font-size: 20px;
+    font-size: 25px;
 
 }
 
@@ -1895,7 +1895,7 @@ th {
 
     color: var(--green);
 
-    font-size: 8px;
+    font-size: 15px;
 
     font-weight: bold;
 
@@ -1904,7 +1904,7 @@ th {
 
 .io h3 {
 
-    font-size: 12px;
+    font-size: 20px;
 
     margin: 8px 0;
 
@@ -1915,7 +1915,7 @@ th {
 
     color: var(--muted);
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
@@ -1970,7 +1970,7 @@ th {
 
     margin: 14px 0 7px;
 
-    font-size: 14px;
+    font-size: 20px;
 
 }
 
@@ -1979,7 +1979,7 @@ th {
 
     color: var(--muted);
 
-    font-size: 10px;
+    font-size: 20px;
 
     line-height: 1.7;
 
@@ -1992,7 +1992,7 @@ th {
 
     color: var(--green);
 
-    font-size: 8px;
+    font-size: 15px;
 
     font-weight: bold;
 
@@ -2058,7 +2058,7 @@ th {
 
     color: var(--muted);
 
-    font-size: 9px;
+    font-size: 15px;
 
     line-height: 1.7;
 
@@ -2109,7 +2109,7 @@ footer {
 
     color: #8b9aaa;
 
-    font-size: 8px;
+    font-size: 15px;
 
 }
 
