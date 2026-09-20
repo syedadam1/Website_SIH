@@ -36,7 +36,29 @@ function showPage(pageId, clickedButton) {
         button.classList.remove("active");
 
     });
-
+    const manganeseLocations = [
+    {
+        name: "Balaghat",
+        state: "Madhya Pradesh",
+        latitude: 21.8129,
+        longitude: 80.1838,
+        mineral: "Manganese"
+    },
+    {
+        name: "Tirodi",
+        state: "Madhya Pradesh",
+        latitude: 21.688,
+        longitude: 79.950,
+        mineral: "Manganese"
+    },
+    {
+        name: "Bharweli",
+        state: "Madhya Pradesh",
+        latitude: 21.810,
+        longitude: 80.190,
+        mineral: "Manganese"
+    }
+];
 
     if (clickedButton) {
 
