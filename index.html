@@ -2,1743 +2,2225 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>ECHO | Manganese Intelligence</title>
 
+    <!-- Your CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet Map -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
 </head>
+
 
 <body>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
 
-        <div class="logo">
-            <div class="logo-box">E</div>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-            <div>
-                <h2>ECHO</h2>
-                <p>Mineral Intelligence</p>
-            </div>
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-box">
+            E
         </div>
 
-        <p class="menu-title">CONTROL TOWER</p>
+        <div>
 
-        <button class="menu active" onclick="showPage('dashboard', this)">
-            🏠 Dashboard
-        </button>
+            <h2>ECHO</h2>
 
-        <button class="menu" onclick="showPage('reserve', this)">
-            🗺️ Reserve Map
-        </button>
-
-        <button class="menu" onclick="showPage('production', this)">
-            📊 Production
-        </button>
-
-        <button class="menu" onclick="showPage('risk', this)">
-            ⚠️ Risk Intelligence
-        </button>
-
-        <button class="menu" onclick="showPage('recommendation', this)">
-            ✓ Recommendations
-        </button>
-
-        <p class="menu-title">SYSTEM</p>
-
-        <button class="menu" onclick="showPage('methodology', this)">
-            ⚙ Methodology
-        </button>
-
-        <button class="menu" onclick="showPage('data', this)">
-            ◈ Data Sources
-        </button>
-
-        <button class="menu" onclick="showPage('feasibility', this)">
-            ◆ Feasibility
-        </button>
-
-        <div class="system">
-
-            <div class="online-dot"></div>
-
-            <div>
-                <b>System Online</b>
-                <small>AI pipeline ready</small>
-            </div>
+            <p>Mineral Intelligence</p>
 
         </div>
 
-        <div class="version">
-            ECHO v1.0 • SIH 2026
+    </div>
+
+
+    <p class="menu-title">
+        CONTROL TOWER
+    </p>
+
+
+    <button
+        class="menu active"
+        onclick="showPage('dashboard', this)"
+    >
+        🏠 Dashboard
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="showPage('reserve', this)"
+    >
+        🗺️ Reserve Map
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="showPage('production', this)"
+    >
+        📊 Production
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="showPage('risk', this)"
+    >
+        ⚠️ Risk Intelligence
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="showPage('recommendation', this)"
+    >
+        ✓ Recommendations
+    </button>
+
+
+    <p class="menu-title">
+        SYSTEM
+    </p>
+
+
+    <button
+        class="menu"
+        onclick="showPage('methodology', this)"
+    >
+        ⚙ Methodology
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="showPage('data', this)"
+    >
+        ◈ Data Sources
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="showPage('feasibility', this)"
+    >
+        ◆ Feasibility
+    </button>
+
+
+    <div class="system">
+
+        <div class="online-dot"></div>
+
+        <div>
+
+            <b>System Online</b>
+
+            <small>
+                AI pipeline ready
+            </small>
+
         </div>
 
-    </aside>
+    </div>
 
 
-    <!-- MAIN -->
-    <main class="main">
+    <div class="version">
+        ECHO v1.0 • SIH 2026
+    </div>
 
-        <!-- TOP BAR -->
+</aside>
 
-        <header class="topbar">
 
-            <div>
-                <span class="top-title">
-                    SMART INDIA HACKATHON 2026
-                </span>
 
-                <span class="slash">/</span>
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
-                <span>
-                    ECHO CONTROL TOWER
-                </span>
-            </div>
+<main class="main">
 
-            <div class="profile">
-                <div class="avatar">EC</div>
-                Explorer
-            </div>
 
-        </header>
+<!-- TOP BAR -->
 
+<header class="topbar">
 
-        <!-- ================= DASHBOARD ================= -->
+    <div>
 
-        <section id="dashboard" class="page active">
+        <span class="top-title">
+            SMART INDIA HACKATHON 2026
+        </span>
 
-            <div class="hero">
+        <span class="slash">
+            /
+        </span>
 
-                <div class="hero-content">
+        <span>
+            ECHO CONTROL TOWER
+        </span>
 
-                    <span class="tag">
-                        SPACE TECHNOLOGY + AI/ML
-                    </span>
+    </div>
 
-                    <h1>
-                        From Data to
-                        <span>Discovery.</span>
-                    </h1>
 
-                    <p>
-                        ECHO combines satellite, geological,
-                        environmental and operational data to
-                        identify manganese prospectivity and
-                        anticipate production shortfalls.
-                    </p>
+    <div class="profile">
 
-                    <div class="buttons">
+        <div class="avatar">
+            EC
+        </div>
 
-                        <button class="primary" onclick="runAI()">
-                            ▶ Run AI Analysis
-                        </button>
+        Explorer
 
-                        <button class="secondary"
-                            onclick="showPage('reserve')">
-                            Explore Reserve Map →
-                        </button>
+    </div>
 
-                    </div>
+</header>
 
-                </div>
 
-                <div class="planet-area">
 
-                    <div class="orbit orbit1"></div>
-                    <div class="orbit orbit2"></div>
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
-                    <div class="planet">
-                        Mn
-                    </div>
+<section
+    id="dashboard"
+    class="page active"
+>
 
-                </div>
 
-            </div>
+    <div class="hero">
 
 
-            <!-- KPI -->
+        <div class="hero-content">
 
-            <div class="section-header">
 
-                <div>
-                    <h2>Intelligence Overview</h2>
+            <span class="tag">
+                SPACE TECHNOLOGY + AI/ML
+            </span>
 
-                    <p>
-                        Current model and operational indicators
-                    </p>
-                </div>
 
-                <div class="live">
-                    ● LIVE MONITORING
-                </div>
+            <h1>
 
-            </div>
+                From Data to
+                <span>Discovery.</span>
 
+            </h1>
 
-            <div class="cards">
 
-                <div class="card">
+            <p>
 
-                    <div class="card-icon blue">
-                        ◈
-                    </div>
+                ECHO combines satellite, geological,
+                environmental and operational data
+                to identify manganese prospectivity
+                and anticipate production shortfalls.
 
-                    <div>
-                        <small>
-                            Identified Prospectivity
-                        </small>
+            </p>
 
-                        <h2 id="reserveValue">
-                            482.6 Mt
-                        </h2>
 
-                        <span class="green">
-                            +4.2%
-                        </span>
-                    </div>
+            <div class="buttons">
 
-                </div>
+                <button
+                    class="primary"
+                    onclick="runAI()"
+                >
+                    ▶ Run AI Analysis
+                </button>
 
 
-                <div class="card">
-
-                    <div class="card-icon purple">
-                        ▣
-                    </div>
-
-                    <div>
-                        <small>
-                            Expected Production
-                        </small>
-
-                        <h2>
-                            18.7 Mt
-                        </h2>
-
-                        <span class="green">
-                            +1.9%
-                        </span>
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-icon orange">
-                        ⚠
-                    </div>
-
-                    <div>
-                        <small>
-                            Shortfall Risk
-                        </small>
-
-                        <h2 class="orange-text">
-                            LOW
-                        </h2>
-
-                        <span class="green">
-                            ↓ 8.7%
-                        </span>
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-icon green">
-                        ✓
-                    </div>
-
-                    <div>
-                        <small>
-                            Model Confidence
-                        </small>
-
-                        <h2>
-                            91.4%
-                        </h2>
-
-                        <span class="green">
-                            +2.6%
-                        </span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- DASHBOARD GRID -->
-
-            <div class="grid">
-
-                <!-- MAP -->
-
-                <div class="panel map-panel">
-
-                    <div class="panel-header">
-
-                        <div>
-                            <h3>
-                                Manganese Prospectivity Map
-                            </h3>
-
-                            <p>
-                                Probability-based model output
-                            </p>
-                        </div>
-
-                        <button class="small-button"
-                            onclick="showPage('reserve')">
-                            Open Map
-                        </button>
-
-                    </div>
-
-
-                    <div class="map">
-
-                        <div class="heat heat1"></div>
-                        <div class="heat heat2"></div>
-                        <div class="heat heat3"></div>
-                        <div class="heat heat4"></div>
-
-                        <div class="location loc1">
-                            North Belt
-                        </div>
-
-                        <div class="location loc2">
-                            Central Block
-                        </div>
-
-                        <div class="location loc3">
-                            South Block
-                        </div>
-
-                        <div class="map-legend">
-
-                            <span>
-                                <i class="very-high"></i>
-                                Very High
-                            </span>
-
-                            <span>
-                                <i class="high"></i>
-                                High
-                            </span>
-
-                            <span>
-                                <i class="medium"></i>
-                                Medium
-                            </span>
-
-                            <span>
-                                <i class="low"></i>
-                                Low
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- PRODUCTION CHART -->
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <div>
-                            <h3>
-                                Production Trend
-                            </h3>
-
-                            <p>
-                                Actual vs predicted
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <canvas id="productionChart"></canvas>
-
-                </div>
-
-            </div>
-
-
-            <!-- LOWER -->
-
-            <div class="grid">
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <div>
-                            <h3>
-                                Risk Snapshot
-                            </h3>
-
-                            <p>
-                                Current operational signals
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="risk-row">
-
-                        <span>
-                            🔴 Equipment downtime
-                        </span>
-
-                        <b class="orange-text">
-                            MEDIUM
-                        </b>
-
-                    </div>
-
-                    <div class="risk-row">
-
-                        <span>
-                            🟢 Production shortfall
-                        </span>
-
-                        <b class="green">
-                            LOW
-                        </b>
-
-                    </div>
-
-                    <div class="risk-row">
-
-                        <span>
-                            🟠 Weather disruption
-                        </span>
-
-                        <b class="orange-text">
-                            HIGH
-                        </b>
-
-                    </div>
-
-                </div>
-
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <div>
-                            <h3>
-                                Recommended Actions
-                            </h3>
-
-                            <p>
-                                Decision support layer
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="action">
-                        <b>01</b>
-
-                        <div>
-                            <strong>
-                                Prioritize Central Block survey
-                            </strong>
-
-                            <small>
-                                High prospectivity zone
-                            </small>
-                        </div>
-
-                        <span>NOW</span>
-                    </div>
-
-
-                    <div class="action">
-
-                        <b>02</b>
-
-                        <div>
-                            <strong>
-                                Inspect Excavator-04
-                            </strong>
-
-                            <small>
-                                Downtime risk elevated
-                            </small>
-                        </div>
-
-                        <span>24H</span>
-
-                    </div>
-
-
-                    <div class="action">
-
-                        <b>03</b>
-
-                        <div>
-
-                            <strong>
-                                Adjust blasting schedule
-                            </strong>
-
-                            <small>
-                                Reduce production gap
-                            </small>
-
-                        </div>
-
-                        <span>48H</span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= RESERVE MAP ================= -->
-
-        <section id="reserve" class="page">
-
-            <div class="page-heading">
-
-                <div>
-
-                    <span class="tag">
-                        EXPLORATION INTELLIGENCE
-                    </span>
-
-                    <h1>
-                        Reserve Prospectivity
-                    </h1>
-
-                    <p>
-                        Explore model-generated probability zones
-                        and prioritize locations for field verification.
-                    </p>
-
-                </div>
-
-                <button class="primary">
-                    ↓ Export Report
+                <button
+                    class="secondary"
+                    onclick="showPage('reserve')"
+                >
+                    Explore Reserve Map →
                 </button>
 
             </div>
 
 
-            <div class="filters">
-
-                <label>
-                    Region
-
-                    <select>
-                        <option>All Regions</option>
-                        <option>Odisha Belt</option>
-                        <option>Central India</option>
-                        <option>South India</option>
-                    </select>
-                </label>
+        </div>
 
 
-                <label>
-                    Prospectivity
+        <div class="planet-area">
 
-                    <select>
-                        <option>All Classes</option>
-                        <option>Very High</option>
-                        <option>High</option>
-                        <option>Medium</option>
-                        <option>Low</option>
-                    </select>
-                </label>
+            <div class="orbit orbit1"></div>
+
+            <div class="orbit orbit2"></div>
+
+            <div class="planet">
+                Mn
+            </div>
+
+        </div>
+
+    </div>
 
 
-                <label>
-                    Data Layer
 
-                    <select>
-                        <option>All Layers</option>
-                        <option>Spectral</option>
-                        <option>Thermal</option>
-                        <option>Soil Moisture</option>
-                        <option>Topography</option>
-                        <option>Gravity</option>
-                    </select>
-                </label>
+    <!-- KPI -->
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                Intelligence Overview
+            </h2>
+
+            <p>
+                Current model and operational indicators
+            </p>
+
+        </div>
+
+
+        <div class="live">
+            ● LIVE MONITORING
+        </div>
+
+    </div>
+
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="card-icon blue">
+                ◈
+            </div>
+
+            <div>
+
+                <small>
+                    Identified Prospectivity
+                </small>
+
+                <h2 id="reserveValue">
+                    482.6 Mt
+                </h2>
+
+                <span class="green">
+                    +4.2%
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-icon purple">
+                ▣
+            </div>
+
+            <div>
+
+                <small>
+                    Expected Production
+                </small>
+
+                <h2>
+                    18.7 Mt
+                </h2>
+
+                <span class="green">
+                    +1.9%
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-icon orange">
+                ⚠
+            </div>
+
+            <div>
+
+                <small>
+                    Shortfall Risk
+                </small>
+
+                <h2 class="orange-text">
+                    LOW
+                </h2>
+
+                <span class="green">
+                    ↓ 8.7%
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-icon green">
+                ✓
+            </div>
+
+            <div>
+
+                <small>
+                    Model Confidence
+                </small>
+
+                <h2>
+                    91.4%
+                </h2>
+
+                <span class="green">
+                    +2.6%
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MAP + CHART -->
+
+    <div class="grid">
+
+
+        <div class="panel map-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Manganese Prospectivity Map
+                    </h3>
+
+                    <p>
+                        Real-world Indian manganese locations
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="small-button"
+                    onclick="showPage('reserve')"
+                >
+                    Open Map
+                </button>
 
             </div>
 
 
-            <div class="large-map panel">
+            <div
+                id="dashboardMap"
+                class="dashboard-map"
+            ></div>
 
-                <div class="big-heat h1"></div>
-                <div class="big-heat h2"></div>
-                <div class="big-heat h3"></div>
-                <div class="big-heat h4"></div>
+        </div>
 
-                <div class="zone z1">
-                    <b>ZONE A</b>
-                    <span>Very High • 94%</span>
-                </div>
 
-                <div class="zone z2">
-                    <b>ZONE B</b>
-                    <span>High • 86%</span>
-                </div>
 
-                <div class="zone z3">
-                    <b>ZONE C</b>
-                    <span>Medium • 67%</span>
-                </div>
+        <div class="panel">
 
-                <div class="map-compass">
-                    N<br>+
-                </div>
+            <div class="panel-header">
 
-                <div class="big-legend">
+                <div>
 
-                    <b>Mn Prospectivity</b>
+                    <h3>
+                        Production Trend
+                    </h3>
 
-                    <span>
-                        🔴 Very High
-                    </span>
-
-                    <span>
-                        🟠 High
-                    </span>
-
-                    <span>
-                        🟡 Medium
-                    </span>
-
-                    <span>
-                        🟢 Low
-                    </span>
+                    <p>
+                        Actual vs predicted
+                    </p>
 
                 </div>
 
             </div>
 
 
-            <div class="panel table-panel">
+            <canvas
+                id="productionChart"
+            ></canvas>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- LOWER -->
+
+    <div class="grid">
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Risk Snapshot
+                    </h3>
+
+                    <p>
+                        Current operational signals
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="risk-row">
+
+                <span>
+                    🔴 Equipment downtime
+                </span>
+
+                <b class="orange-text">
+                    MEDIUM
+                </b>
+
+            </div>
+
+
+            <div class="risk-row">
+
+                <span>
+                    🟢 Production shortfall
+                </span>
+
+                <b class="green">
+                    LOW
+                </b>
+
+            </div>
+
+
+            <div class="risk-row">
+
+                <span>
+                    🟠 Weather disruption
+                </span>
+
+                <b class="orange-text">
+                    HIGH
+                </b>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Recommended Actions
+                    </h3>
+
+                    <p>
+                        Decision support layer
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="action">
+
+                <b>01</b>
+
+                <div>
+
+                    <strong>
+                        Prioritize Balaghat survey
+                    </strong>
+
+                    <small>
+                        High manganese prospectivity
+                    </small>
+
+                </div>
+
+                <span>
+                    NOW
+                </span>
+
+            </div>
+
+
+            <div class="action">
+
+                <b>02</b>
+
+                <div>
+
+                    <strong>
+                        Inspect Excavator-04
+                    </strong>
+
+                    <small>
+                        Downtime risk elevated
+                    </small>
+
+                </div>
+
+                <span>
+                    24H
+                </span>
+
+            </div>
+
+
+            <div class="action">
+
+                <b>03</b>
+
+                <div>
+
+                    <strong>
+                        Adjust blasting schedule
+                    </strong>
+
+                    <small>
+                        Reduce production gap
+                    </small>
+
+                </div>
+
+                <span>
+                    48H
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RESERVE MAP
+===================================================== -->
+
+<section
+    id="reserve"
+    class="page"
+>
+
+
+    <div class="page-heading">
+
+        <div>
+
+            <span class="tag">
+                EXPLORATION INTELLIGENCE
+            </span>
+
+            <h1>
+                Reserve Prospectivity
+            </h1>
+
+            <p>
+                Explore real-world manganese locations
+                and model-generated prospectivity zones.
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary"
+            onclick="exportReport()"
+        >
+            ↓ Export Report
+        </button>
+
+    </div>
+
+
+
+    <div class="filters">
+
+
+        <label>
+
+            Region
+
+            <select id="regionFilter">
+
+                <option value="all">
+                    All Regions
+                </option>
+
+                <option value="balaghat">
+                    Balaghat
+                </option>
+
+                <option value="tirodi">
+                    Tirodi
+                </option>
+
+                <option value="bharweli">
+                    Bharweli
+                </option>
+
+                <option value="sitapatore">
+                    Sitapatore
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <label>
+
+            Prospectivity
+
+            <select id="prospectivityFilter">
+
+                <option value="all">
+                    All Classes
+                </option>
+
+                <option value="Very High">
+                    Very High
+                </option>
+
+                <option value="High">
+                    High
+                </option>
+
+                <option value="Medium">
+                    Medium
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <label>
+
+            Data Layer
+
+            <select id="dataLayer">
+
+                <option>
+                    Satellite
+                </option>
+
+                <option>
+                    Spectral
+                </option>
+
+                <option>
+                    Thermal
+                </option>
+
+                <option>
+                    Soil Moisture
+                </option>
+
+                <option>
+                    Topography
+                </option>
+
+                <option>
+                    Gravity
+                </option>
+
+            </select>
+
+        </label>
+
+    </div>
+
+
+
+    <div class="map-status">
+
+        <span>
+            📍
+            <b>India</b>
+        </span>
+
+        <span>
+            ⛏
+            Manganese Intelligence
+        </span>
+
+        <span>
+            ●
+            Live Prototype Data
+        </span>
+
+    </div>
+
+
+
+    <div class="large-map panel">
+
+        <div
+            id="reserveMap"
+            class="reserve-map"
+        ></div>
+
+        <div class="map-info-card">
+
+            <span class="tag">
+                SELECTED REGION
+            </span>
+
+            <h3 id="selectedLocation">
+                Balaghat, Madhya Pradesh
+            </h3>
+
+            <p id="selectedLocationInfo">
+
+                Manganese-bearing region.
+                Click a marker to inspect location
+                information.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="panel table-panel">
+
+        <h3>
+            Priority Exploration Locations
+        </h3>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Location
+                    </th>
+
+                    <th>
+                        State
+                    </th>
+
+                    <th>
+                        Prospectivity
+                    </th>
+
+                    <th>
+                        Latitude
+                    </th>
+
+                    <th>
+                        Longitude
+                    </th>
+
+                    <th>
+                        Mineral
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="locationTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PRODUCTION
+===================================================== -->
+
+<section
+    id="production"
+    class="page"
+>
+
+
+    <div class="page-heading">
+
+        <div>
+
+            <span class="tag">
+                OPERATIONS INTELLIGENCE
+            </span>
+
+            <h1>
+                Production Intelligence
+            </h1>
+
+            <p>
+                Production history, equipment performance,
+                weather and blasting delays are combined
+                to anticipate production shortfalls.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="card-icon blue">
+                ▥
+            </div>
+
+            <div>
+
+                <small>
+                    Target Production
+                </small>
+
+                <h2>
+                    20.1 Mt
+                </h2>
+
+                <span>
+                    Monthly
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-icon green">
+                ✓
+            </div>
+
+            <div>
+
+                <small>
+                    Predicted Output
+                </small>
+
+                <h2>
+                    19.5 Mt
+                </h2>
+
+                <span class="green">
+                    97% Target
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-icon orange">
+                ⚠
+            </div>
+
+            <div>
+
+                <small>
+                    Forecast Gap
+                </small>
+
+                <h2 class="orange-text">
+                    −0.6 Mt
+                </h2>
+
+                <span>
+                    LOW RISK
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-icon purple">
+                ◌
+            </div>
+
+            <div>
+
+                <small>
+                    Equipment Utilization
+                </small>
+
+                <h2>
+                    87%
+                </h2>
+
+                <span class="green">
+                    +3.2%
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="grid">
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Production Forecast
+                    </h3>
+
+                    <p>
+                        Actual vs predicted
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <canvas
+                id="productionChart2"
+            ></canvas>
+
+        </div>
+
+
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h3>
+                        Shortfall Contributors
+                    </h3>
+
+                    <p>
+                        Model feature contribution
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contributor">
+
+                <span>
+                    Equipment downtime
+                </span>
+
+                <b>
+                    32%
+                </b>
+
+                <div class="bar">
+                    <i style="width:32%"></i>
+                </div>
+
+            </div>
+
+
+            <div class="contributor">
+
+                <span>
+                    Weather / rainfall
+                </span>
+
+                <b>
+                    27%
+                </b>
+
+                <div class="bar">
+                    <i style="width:27%"></i>
+                </div>
+
+            </div>
+
+
+            <div class="contributor">
+
+                <span>
+                    Blasting delays
+                </span>
+
+                <b>
+                    21%
+                </b>
+
+                <div class="bar">
+                    <i style="width:21%"></i>
+                </div>
+
+            </div>
+
+
+            <div class="contributor">
+
+                <span>
+                    Ore availability
+                </span>
+
+                <b>
+                    12%
+                </b>
+
+                <div class="bar">
+                    <i style="width:12%"></i>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RISK
+===================================================== -->
+
+<section
+    id="risk"
+    class="page"
+>
+
+
+    <div class="page-heading">
+
+        <div>
+
+            <span class="tag">
+                RISK & ACTION INTELLIGENCE
+            </span>
+
+            <h1>
+                Risk Intelligence
+            </h1>
+
+            <p>
+                Identify likely downtime, capacity constraints
+                and production gaps before they become
+                operational problems.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="risk-grid">
+
+
+        <div class="risk-card high">
+
+            <span>
+                HIGH
+            </span>
+
+            <h3>
+                Weather Disruption
+            </h3>
+
+            <strong>
+                Rainfall anomaly
+            </strong>
+
+            <p>
+                Weather features indicate elevated
+                disruption probability.
+            </p>
+
+        </div>
+
+
+        <div class="risk-card medium">
+
+            <span>
+                MEDIUM
+            </span>
+
+            <h3>
+                Equipment Downtime
+            </h3>
+
+            <strong>
+                Excavator-04
+            </strong>
+
+            <p>
+                Utilization and maintenance signals
+                suggest elevated downtime risk.
+            </p>
+
+        </div>
+
+
+        <div class="risk-card low">
+
+            <span>
+                LOW
+            </span>
+
+            <h3>
+                Production Shortfall
+            </h3>
+
+            <strong>
+                −3.1% forecast gap
+            </strong>
+
+            <p>
+                Current output remains close to target.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="panel">
+
+        <div class="panel-header">
+
+            <div>
 
                 <h3>
-                    Priority Exploration Zones
+                    Explainable ML
                 </h3>
 
-                <table>
-
-                    <thead>
-
-                        <tr>
-                            <th>Zone</th>
-                            <th>Prospectivity</th>
-                            <th>Confidence</th>
-                            <th>Estimated Quantity</th>
-                            <th>Evidence</th>
-                        </tr>
-
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-
-                            <td>
-                                Central Block A
-                            </td>
-
-                            <td>
-                                <span class="badge red">
-                                    VERY HIGH
-                                </span>
-                            </td>
-
-                            <td>
-                                94%
-                            </td>
-
-                            <td>
-                                126.4 Mt
-                            </td>
-
-                            <td>
-                                5 / 6 factors
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td>
-                                North Belt B
-                            </td>
-
-                            <td>
-                                <span class="badge orange">
-                                    HIGH
-                                </span>
-                            </td>
-
-                            <td>
-                                86%
-                            </td>
-
-                            <td>
-                                98.2 Mt
-                            </td>
-
-                            <td>
-                                5 / 6 factors
-                            </td>
-
-                        </tr>
-
-
-                        <tr>
-
-                            <td>
-                                South Block C
-                            </td>
-
-                            <td>
-                                <span class="badge yellow">
-                                    MEDIUM
-                                </span>
-                            </td>
-
-                            <td>
-                                67%
-                            </td>
-
-                            <td>
-                                71.5 Mt
-                            </td>
-
-                            <td>
-                                4 / 6 factors
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
+                <p>
+                    Feature contribution to model prediction
+                </p>
 
             </div>
 
-        </section>
-
-
-        <!-- ================= PRODUCTION ================= -->
-
-        <section id="production" class="page">
-
-            <div class="page-heading">
-
-                <div>
-
-                    <span class="tag">
-                        OPERATIONS INTELLIGENCE
-                    </span>
-
-                    <h1>
-                        Production Intelligence
-                    </h1>
-
-                    <p>
-                        Production history, equipment performance,
-                        weather and blasting delays are combined
-                        to anticipate production shortfalls.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="cards">
-
-                <div class="card">
-                    <div class="card-icon blue">▥</div>
-
-                    <div>
-                        <small>Target Production</small>
-                        <h2>20.1 Mt</h2>
-                        <span>Monthly</span>
-                    </div>
-                </div>
-
-
-                <div class="card">
-                    <div class="card-icon green">✓</div>
-
-                    <div>
-                        <small>Predicted Output</small>
-                        <h2>19.5 Mt</h2>
-                        <span class="green">97% Target</span>
-                    </div>
-                </div>
-
-
-                <div class="card">
-                    <div class="card-icon orange">⚠</div>
-
-                    <div>
-                        <small>Forecast Gap</small>
-                        <h2 class="orange-text">−0.6 Mt</h2>
-                        <span>LOW RISK</span>
-                    </div>
-                </div>
-
-
-                <div class="card">
-                    <div class="card-icon purple">◌</div>
-
-                    <div>
-                        <small>Equipment Utilization</small>
-                        <h2>87%</h2>
-                        <span class="green">+3.2%</span>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="grid">
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <div>
-                            <h3>
-                                Production Forecast
-                            </h3>
-
-                            <p>
-                                Actual vs predicted
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <canvas id="productionChart2"></canvas>
-
-                </div>
-
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <div>
-                            <h3>
-                                Shortfall Contributors
-                            </h3>
-
-                            <p>
-                                Model feature contribution
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="contributor">
-
-                        <span>
-                            Equipment downtime
-                        </span>
-
-                        <b>32%</b>
-
-                        <div class="bar">
-                            <i style="width:32%"></i>
-                        </div>
-
-                    </div>
-
-
-                    <div class="contributor">
-
-                        <span>
-                            Weather / rainfall
-                        </span>
-
-                        <b>27%</b>
-
-                        <div class="bar">
-                            <i style="width:27%"></i>
-                        </div>
-
-                    </div>
-
-
-                    <div class="contributor">
-
-                        <span>
-                            Blasting delays
-                        </span>
-
-                        <b>21%</b>
-
-                        <div class="bar">
-                            <i style="width:21%"></i>
-                        </div>
-
-                    </div>
-
-
-                    <div class="contributor">
-
-                        <span>
-                            Ore availability
-                        </span>
-
-                        <b>12%</b>
-
-                        <div class="bar">
-                            <i style="width:12%"></i>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= RISK ================= -->
-
-        <section id="risk" class="page">
-
-            <div class="page-heading">
-
-                <div>
-
-                    <span class="tag">
-                        RISK & ACTION INTELLIGENCE
-                    </span>
-
-                    <h1>
-                        Risk Intelligence
-                    </h1>
-
-                    <p>
-                        Identify likely downtime, capacity constraints
-                        and production gaps before they become
-                        operational problems.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="risk-grid">
-
-                <div class="risk-card high">
-
-                    <span>HIGH</span>
-
-                    <h3>
-                        Weather Disruption
-                    </h3>
-
-                    <strong>
-                        Rainfall anomaly
-                    </strong>
-
-                    <p>
-                        Weather features indicate elevated
-                        disruption probability.
-                    </p>
-
-                </div>
-
-
-                <div class="risk-card medium">
-
-                    <span>MEDIUM</span>
-
-                    <h3>
-                        Equipment Downtime
-                    </h3>
-
-                    <strong>
-                        Excavator-04
-                    </strong>
-
-                    <p>
-                        Utilization and maintenance signals
-                        suggest elevated downtime risk.
-                    </p>
-
-                </div>
-
-
-                <div class="risk-card low">
-
-                    <span>LOW</span>
-
-                    <h3>
-                        Production Shortfall
-                    </h3>
-
-                    <strong>
-                        −3.1% forecast gap
-                    </strong>
-
-                    <p>
-                        Current output remains close to target.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="panel">
-
-                <div class="panel-header">
-
-                    <div>
-                        <h3>
-                            Explainable ML
-                        </h3>
-
-                        <p>
-                            Feature contribution to model prediction
-                        </p>
-                    </div>
-
-                    <span class="badge">
-                        XGBoost
-                    </span>
-
-                </div>
-
-
-                <div class="features">
-
-                    <div>
-                        <span>Soil moisture</span>
-                        <b>31%</b>
-
-                        <div class="bar">
-                            <i style="width:78%"></i>
-                        </div>
-                    </div>
-
-
-                    <div>
-                        <span>Spectral index</span>
-                        <b>26%</b>
-
-                        <div class="bar">
-                            <i style="width:66%"></i>
-                        </div>
-                    </div>
-
-
-                    <div>
-                        <span>Geological structure</span>
-                        <b>19%</b>
-
-                        <div class="bar">
-                            <i style="width:48%"></i>
-                        </div>
-                    </div>
-
-
-                    <div>
-                        <span>Thermal anomaly</span>
-                        <b>14%</b>
-
-                        <div class="bar">
-                            <i style="width:36%"></i>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= RECOMMENDATION ================= -->
-
-        <section id="recommendation" class="page">
-
-            <div class="page-heading">
-
-                <div>
-
-                    <span class="tag">
-                        DECISION SUPPORT
-                    </span>
-
-                    <h1>
-                        Recommended Actions
-                    </h1>
-
-                    <p>
-                        Convert model outputs into practical
-                        exploration and operational actions.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="recommendations">
-
-                <div class="recommend-card">
-
-                    <span>
-                        EXPLORATION
-                    </span>
-
-                    <h3>
-                        Field-verify Central Block A
-                    </h3>
-
-                    <p>
-                        Very high prospectivity with strong
-                        multi-source agreement. Validate through
-                        geological survey, sampling and drilling.
-                    </p>
-
-                    <div class="stats">
-
-                        <div>
-                            Confidence
-                            <b>94%</b>
-                        </div>
-
-                        <div>
-                            Evidence
-                            <b>5/6</b>
-                        </div>
-
-                        <div>
-                            Target
-                            <b>126.4 Mt</b>
-                        </div>
-
-                    </div>
-
-                    <button class="primary">
-                        Assign Survey →
-                    </button>
-
-                </div>
-
-
-                <div class="recommend-card">
-
-                    <span>
-                        MAINTENANCE
-                    </span>
-
-                    <h3>
-                        Inspect Excavator-04
-                    </h3>
-
-                    <p>
-                        Equipment model detects utilization
-                        and maintenance signals associated
-                        with elevated downtime risk.
-                    </p>
-
-                    <div class="stats">
-
-                        <div>
-                            Risk
-                            <b>Medium</b>
-                        </div>
-
-                        <div>
-                            Asset
-                            <b>EX-04</b>
-                        </div>
-
-                        <div>
-                            Impact
-                            <b>3.8%</b>
-                        </div>
-
-                    </div>
-
-                    <button class="secondary">
-                        Open Work Order →
-                    </button>
-
-                </div>
-
-
-                <div class="recommend-card">
-
-                    <span>
-                        PRODUCTION
-                    </span>
-
-                    <h3>
-                        Optimize blasting schedule
-                    </h3>
-
-                    <p>
-                        Re-align blasting activity with production
-                        targets to reduce the forecast gap.
-                    </p>
-
-                    <div class="stats">
-
-                        <div>
-                            Gap
-                            <b>−0.6 Mt</b>
-                        </div>
-
-                        <div>
-                            Risk
-                            <b>Low</b>
-                        </div>
-
-                        <div>
-                            Window
-                            <b>48h</b>
-                        </div>
-
-                    </div>
-
-                    <button class="secondary">
-                        Review Schedule →
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= METHODOLOGY ================= -->
-
-        <section id="methodology" class="page">
-
-            <div class="page-heading">
-
-                <div>
-
-                    <span class="tag">
-                        TECHNICAL APPROACH
-                    </span>
-
-                    <h1>
-                        How ECHO Works
-                    </h1>
-
-                    <p>
-                        Five-phase pipeline from data collection
-                        to continuous monitoring.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="pipeline">
-
-                <div class="phase">
-
-                    <span>01</span>
-
-                    <h3>
-                        Data Input
-                    </h3>
-
-                    <p>
-                        Integrated mine and satellite data.
-                    </p>
-
-                    <ul>
-                        <li>Geological Data</li>
-                        <li>Production History</li>
-                        <li>Equipment Performance</li>
-                        <li>Weather / Satellite</li>
-                    </ul>
-
-                </div>
-
-
-                <div class="arrow">
-                    →
-                </div>
-
-
-                <div class="phase">
-
-                    <span>02</span>
-
-                    <h3>
-                        Data Processing
-                    </h3>
-
-                    <p>
-                        Feature engineering and fusion.
-                    </p>
-
-                    <ul>
-                        <li>Data Cleaning</li>
-                        <li>Feature Engineering</li>
-                        <li>Data Fusion</li>
-                        <li>Train / Test Split</li>
-                    </ul>
-
-                </div>
-
-
-                <div class="arrow">
-                    →
-                </div>
-
-
-                <div class="phase">
-
-                    <span>03</span>
-
-                    <h3>
-                        AI / ML Engine
-                    </h3>
-
-                    <p>
-                        XGBoost prediction layer.
-                    </p>
-
-                    <ul>
-                        <li>Reserve Classifier</li>
-                        <li>Quantity Regressor</li>
-                        <li>Shortfall Classifier</li>
-                        <li>Downtime Classifier</li>
-                    </ul>
-
-                </div>
-
-
-                <div class="arrow">
-                    →
-                </div>
-
-
-                <div class="phase">
-
-                    <span>04</span>
-
-                    <h3>
-                        Decision Layer
-                    </h3>
-
-                    <p>
-                        Risk and action intelligence.
-                    </p>
-
-                    <ul>
-                        <li>Reserve Map</li>
-                        <li>Shortfall Risk</li>
-                        <li>Equipment Risk</li>
-                        <li>Corrective Actions</li>
-                    </ul>
-
-                </div>
-
-
-                <div class="arrow">
-                    →
-                </div>
-
-
-                <div class="phase">
-
-                    <span>05</span>
-
-                    <h3>
-                        Control Tower
-                    </h3>
-
-                    <p>
-                        Unified dashboard.
-                    </p>
-
-                    <ul>
-                        <li>Reserve Prediction</li>
-                        <li>Production Trends</li>
-                        <li>Shortfall Alerts</li>
-                        <li>Recommended Actions</li>
-                    </ul>
-
-                </div>
-
-            </div>
-
-
-            <div class="io">
-
-                <div>
-                    <small>INPUT</small>
-                    <h3>
-                        Large unexplored area
-                    </h3>
-                    <p>
-                        Mine + satellite + environmental data
-                    </p>
-                </div>
-
-                <b>→</b>
-
-                <div>
-                    <small>PROCESS FILTERS</small>
-                    <h3>
-                        Spectral • Thermal • Soil • Topography • Gravity
-                    </h3>
-                    <p>
-                        Feature fusion + statistical validation + ML
-                    </p>
-                </div>
-
-                <b>→</b>
-
-                <div>
-                    <small>OUTPUT</small>
-                    <h3>
-                        Very High → Very Low
-                    </h3>
-                    <p>
-                        Prospectivity + quantity + risk + actions
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= DATA ================= -->
-
-        <section id="data" class="page">
-
-            <div class="page-heading">
-
-                <div>
-
-                    <span class="tag">
-                        MULTI-SOURCE DATA FUSION
-                    </span>
-
-                    <h1>
-                        Data Sources
-                    </h1>
-
-                    <p>
-                        ECHO combines multiple evidence layers
-                        rather than relying on a single signal.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="data-grid">
-
-                <div class="data-card">
-                    <div class="data-icon">✦</div>
-
-                    <h3>
-                        Spectral Bands
-                    </h3>
-
-                    <p>
-                        Optical, NIR and SWIR features used
-                        for spectral indices and mineral mapping.
-                    </p>
-
-                    <span>
-                        SATELLITE / OPTICAL
-                    </span>
-                </div>
-
-
-                <div class="data-card">
-                    <div class="data-icon">♨</div>
-
-                    <h3>
-                        Thermal Data
-                    </h3>
-
-                    <p>
-                        Land surface temperature and thermal
-                        anomalies provide geological context.
-                    </p>
-
-                    <span>
-                        THERMAL
-                    </span>
-                </div>
-
-
-                <div class="data-card">
-                    <div class="data-icon">◒</div>
-
-                    <h3>
-                        Soil Moisture
-                    </h3>
-
-                    <p>
-                        Surface and subsurface moisture patterns
-                        support exploration analysis.
-                    </p>
-
-                    <span>
-                        ENVIRONMENTAL
-                    </span>
-                </div>
-
-
-                <div class="data-card">
-                    <div class="data-icon">☁</div>
-
-                    <h3>
-                        Weather
-                    </h3>
-
-                    <p>
-                        Rainfall, temperature and climate factors
-                        support operational risk intelligence.
-                    </p>
-
-                    <span>
-                        WEATHER
-                    </span>
-                </div>
-
-
-                <div class="data-card">
-                    <div class="data-icon">☼</div>
-
-                    <h3>
-                        UV / Surface
-                    </h3>
-
-                    <p>
-                        UV-related indicators and surface
-                        alteration patterns provide supporting evidence.
-                    </p>
-
-                    <span>
-                        REMOTE SENSING
-                    </span>
-                </div>
-
-
-                <div class="data-card">
-                    <div class="data-icon">◉</div>
-
-                    <h3>
-                        Geology & Gravity
-                    </h3>
-
-                    <p>
-                        Geological structures, terrain and gravity
-                        provide additional subsurface context.
-                    </p>
-
-                    <span>
-                        GEOPHYSICAL
-                    </span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================= FEASIBILITY ================= -->
-
-        <section id="feasibility" class="page">
-
-            <div class="page-heading">
-
-                <div>
-
-                    <span class="tag">
-                        FEASIBILITY & VIABILITY
-                    </span>
-
-                    <h1>
-                        Why ECHO is Practical
-                    </h1>
-
-                    <p>
-                        Data feasibility, technical feasibility,
-                        challenges, mitigation and viability.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="feasibility-grid">
-
-                <div class="feas-card blue-card">
-
-                    <span>01</span>
-
-                    <h3>
-                        Data Feasibility
-                    </h3>
-
-                    <p>
-                        Satellite imagery, thermal and spectral
-                        data, geological and geophysical information,
-                        soil moisture and weather data can be integrated.
-                    </p>
-
-                    <b>
-                        DATA FEASIBLE
-                    </b>
-
-                </div>
-
-
-                <div class="feas-card pink-card">
-
-                    <span>02</span>
-
-                    <h3>
-                        Technical Feasibility
-                    </h3>
-
-                    <p>
-                        Uses established satellite remote sensing,
-                        GIS, AI/ML and geophysical techniques.
-                    </p>
-
-                    <b>
-                        TECHNICALLY FEASIBLE
-                    </b>
-
-                </div>
-
-
-                <div class="feas-card orange-card">
-
-                    <span>03</span>
-
-                    <h3>
-                        Key Challenges
-                    </h3>
-
-                    <p>
-                        Limited subsurface visibility, vegetation,
-                        cloud cover, false positives and regional
-                        geological variation.
-                    </p>
-
-                    <b>
-                        VALIDATION REQUIRED
-                    </b>
-
-                </div>
-
-
-                <div class="feas-card green-card">
-
-                    <span>04</span>
-
-                    <h3>
-                        Solutions
-                    </h3>
-
-                    <p>
-                        Multi-source fusion, SAR, multi-temporal
-                        imagery, preprocessing, robust ML,
-                        calibration and field validation.
-                    </p>
-
-                    <b>
-                        ROBUST PIPELINE
-                    </b>
-
-                </div>
-
-
-                <div class="feas-card purple-card">
-
-                    <span>05</span>
-
-                    <h3>
-                        Viability
-                    </h3>
-
-                    <p>
-                        Faster target identification, lower
-                        unnecessary exploration effort and scalability
-                        to other critical minerals.
-                    </p>
-
-                    <b>
-                        HIGH POTENTIAL
-                    </b>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <footer>
-
-            <span>
-                ECHO • AI/ML & Space Technology for Manganese Mining
+            <span class="badge">
+                XGBoost
             </span>
 
-            <span>
-                SIH 2026 • Problem Statement 26009
+        </div>
+
+
+        <div class="features">
+
+
+            <div>
+
+                <span>
+                    Soil moisture
+                </span>
+
+                <b>
+                    31%
+                </b>
+
+                <div class="bar">
+                    <i style="width:78%"></i>
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Spectral index
+                </span>
+
+                <b>
+                    26%
+                </b>
+
+                <div class="bar">
+                    <i style="width:66%"></i>
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Geological structure
+                </span>
+
+                <b>
+                    19%
+                </b>
+
+                <div class="bar">
+                    <i style="width:48%"></i>
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Thermal anomaly
+                </span>
+
+                <b>
+                    14%
+                </b>
+
+                <div class="bar">
+                    <i style="width:36%"></i>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RECOMMENDATIONS
+===================================================== -->
+
+<section
+    id="recommendation"
+    class="page"
+>
+
+
+    <div class="page-heading">
+
+        <div>
+
+            <span class="tag">
+                DECISION SUPPORT
             </span>
 
-        </footer>
+            <h1>
+                Recommended Actions
+            </h1>
 
-    </main>
+            <p>
+                Convert model outputs into practical
+                exploration and operational actions.
+            </p>
+
+        </div>
+
+    </div>
 
 
-    <div id="toast"></div>
 
-    <script src="script.js"></script>
+    <div class="recommendations">
+
+
+        <div class="recommend-card">
+
+            <span>
+                EXPLORATION
+            </span>
+
+            <h3>
+                Field-verify Balaghat Region
+            </h3>
+
+            <p>
+                Real-world manganese-bearing region
+                selected for prototype exploration analysis.
+            </p>
+
+
+            <div class="stats">
+
+                <div>
+                    Location
+                    <b>
+                        Balaghat
+                    </b>
+                </div>
+
+                <div>
+                    State
+                    <b>
+                        MP
+                    </b>
+                </div>
+
+                <div>
+                    Mineral
+                    <b>
+                        Mn
+                    </b>
+                </div>
+
+            </div>
+
+
+            <button
+                class="primary"
+                onclick="focusLocation(0)"
+            >
+                View Location →
+            </button>
+
+        </div>
+
+
+
+        <div class="recommend-card">
+
+            <span>
+                MAINTENANCE
+            </span>
+
+            <h3>
+                Inspect Excavator-04
+            </h3>
+
+            <p>
+                Equipment model detects utilization
+                and maintenance signals associated
+                with elevated downtime risk.
+            </p>
+
+
+            <div class="stats">
+
+                <div>
+                    Risk
+                    <b>
+                        Medium
+                    </b>
+                </div>
+
+                <div>
+                    Asset
+                    <b>
+                        EX-04
+                    </b>
+                </div>
+
+                <div>
+                    Impact
+                    <b>
+                        3.8%
+                    </b>
+                </div>
+
+            </div>
+
+
+            <button class="secondary">
+                Open Work Order →
+            </button>
+
+        </div>
+
+
+
+        <div class="recommend-card">
+
+            <span>
+                PRODUCTION
+            </span>
+
+            <h3>
+                Optimize blasting schedule
+            </h3>
+
+            <p>
+                Re-align blasting activity with production
+                targets to reduce the forecast gap.
+            </p>
+
+
+            <div class="stats">
+
+                <div>
+                    Gap
+                    <b>
+                        −0.6 Mt
+                    </b>
+                </div>
+
+                <div>
+                    Risk
+                    <b>
+                        Low
+                    </b>
+                </div>
+
+                <div>
+                    Window
+                    <b>
+                        48h
+                    </b>
+                </div>
+
+            </div>
+
+
+            <button class="secondary">
+                Review Schedule →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     METHODOLOGY
+===================================================== -->
+
+<section
+    id="methodology"
+    class="page"
+>
+
+
+    <div class="page-heading">
+
+        <div>
+
+            <span class="tag">
+                TECHNICAL APPROACH
+            </span>
+
+            <h1>
+                How ECHO Works
+            </h1>
+
+            <p>
+                Five-phase pipeline from data collection
+                to continuous monitoring.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="pipeline">
+
+
+        <div class="phase">
+
+            <span>
+                01
+            </span>
+
+            <h3>
+                Data Input
+            </h3>
+
+            <p>
+                Integrated mine and satellite data.
+            </p>
+
+            <ul>
+
+                <li>
+                    Geological Data
+                </li>
+
+                <li>
+                    Production History
+                </li>
+
+                <li>
+                    Equipment Performance
+                </li>
+
+                <li>
+                    Weather / Satellite
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <div class="phase">
+
+            <span>
+                02
+            </span>
+
+            <h3>
+                Data Processing
+            </h3>
+
+            <p>
+                Feature engineering and fusion.
+            </p>
+
+            <ul>
+
+                <li>
+                    Data Cleaning
+                </li>
+
+                <li>
+                    Feature Engineering
+                </li>
+
+                <li>
+                    Data Fusion
+                </li>
+
+                <li>
+                    Train / Test Split
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <div class="phase">
+
+            <span>
+                03
+            </span>
+
+            <h3>
+                AI / ML Engine
+            </h3>
+
+            <p>
+                XGBoost prediction layer.
+            </p>
+
+            <ul>
+
+                <li>
+                    Reserve Classifier
+                </li>
+
+                <li>
+                    Quantity Regressor
+                </li>
+
+                <li>
+                    Shortfall Classifier
+                </li>
+
+                <li>
+                    Downtime Classifier
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <div class="phase">
+
+            <span>
+                04
+            </span>
+
+            <h3>
+                Decision Layer
+            </h3>
+
+            <p>
+                Risk and action intelligence.
+            </p>
+
+            <ul>
+
+                <li>
+                    Reserve Map
+                </li>
+
+                <li>
+                    Shortfall Risk
+                </li>
+
+                <li>
+                    Equipment Risk
+                </li>
+
+                <li>
+                    Corrective Actions
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="arrow">
+            →
+        </div>
+
+
+        <div class="phase">
+
+            <span>
+                05
+            </span>
+
+            <h3>
+                Control Tower
+            </h3>
+
+            <p>
+                Unified dashboard.
+            </p>
+
+            <ul>
+
+                <li>
+                    Reserve Prediction
+                </li>
+
+                <li>
+                    Production Trends
+                </li>
+
+                <li>
+                    Shortfall Alerts
+                </li>
+
+                <li>
+                    Recommended Actions
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="io">
+
+
+        <div>
+
+            <small>
+                INPUT
+            </small>
+
+            <h3>
+                Large unexplored area
+            </h3>
+
+            <p>
+                Mine + satellite + environmental data
+            </p>
+
+        </div>
+
+
+        <b>
+            →
+        </b>
+
+
+        <div>
+
+            <small>
+                PROCESS FILTERS
+            </small>
+
+            <h3>
+                Spectral • Thermal • Soil • Topography • Gravity
+            </h3>
+
+            <p>
+                Feature fusion + statistical validation + ML
+            </p>
+
+        </div>
+
+
+        <b>
+            →
+        </b>
+
+
+        <div>
+
+            <small>
+                OUTPUT
+            </small>
+
+            <h3>
+                Very High → Very Low
+            </h3>
+
+            <p>
+                Prospectivity + quantity + risk + actions
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DATA SOURCES
+===================================================== -->
+
+<section
+    id="data"
+    class="page"
+>
+
+
+    <div class="page-heading">
+
+        <div>
+
+            <span class="tag">
+                MULTI-SOURCE DATA FUSION
+            </span>
+
+            <h1>
+                Data Sources
+            </h1>
+
+            <p>
+                ECHO combines multiple evidence layers
+                rather than relying on a single signal.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="data-grid">
+
+
+        <div class="data-card">
+
+            <div class="data-icon">
+                ✦
+            </div>
+
+            <h3>
+                Spectral Bands
+            </h3>
+
+            <p>
+                Optical, NIR and SWIR features used
+                for spectral indices and mineral mapping.
+            </p>
+
+            <span>
+                SATELLITE / OPTICAL
+            </span>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <div class="data-icon">
+                ♨
+            </div>
+
+            <h3>
+                Thermal Data
+            </h3>
+
+            <p>
+                Land surface temperature and thermal
+                anomalies provide geological context.
+            </p>
+
+            <span>
+                THERMAL
+            </span>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <div class="data-icon">
+                ◒
+            </div>
+
+            <h3>
+                Soil Moisture
+            </h3>
+
+            <p>
+                Surface and subsurface moisture patterns
+                support exploration analysis.
+            </p>
+
+            <span>
+                ENVIRONMENTAL
+            </span>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <div class="data-icon">
+                ☁
+            </div>
+
+            <h3>
+                Weather
+            </h3>
+
+            <p>
+                Rainfall, temperature and climate factors
+                support operational risk intelligence.
+            </p>
+
+            <span>
+                WEATHER
+            </span>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <div class="data-icon">
+                ☼
+            </div>
+
+            <h3>
+                UV / Surface
+            </h3>
+
+            <p>
+                UV-related indicators and surface
+                alteration patterns provide supporting evidence.
+            </p>
+
+            <span>
+                REMOTE SENSING
+            </span>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <div class="data-icon">
+                ◉
+            </div>
+
+            <h3>
+                Geology & Gravity
+            </h3>
+
+            <p>
+                Geological structures, terrain and gravity
+                provide additional subsurface context.
+            </p>
+
+            <span>
+                GEOPHYSICAL
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEASIBILITY
+===================================================== -->
+
+<section
+    id="feasibility"
+    class="page"
+>
+
+
+    <div class="page-heading">
+
+        <div>
+
+            <span class="tag">
+                FEASIBILITY & VIABILITY
+            </span>
+
+            <h1>
+                Why ECHO is Practical
+            </h1>
+
+            <p>
+                Data feasibility, technical feasibility,
+                challenges, mitigation and viability.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="feasibility-grid">
+
+
+        <div class="feas-card blue-card">
+
+            <span>
+                01
+            </span>
+
+            <h3>
+                Data Feasibility
+            </h3>
+
+            <p>
+                Satellite imagery, thermal and spectral
+                data, geological and geophysical information,
+                soil moisture and weather data can be integrated.
+            </p>
+
+            <b>
+                DATA FEASIBLE
+            </b>
+
+        </div>
+
+
+        <div class="feas-card pink-card">
+
+            <span>
+                02
+            </span>
+
+            <h3>
+                Technical Feasibility
+            </h3>
+
+            <p>
+                Uses established satellite remote sensing,
+                GIS, AI/ML and geophysical techniques.
+            </p>
+
+            <b>
+                TECHNICALLY FEASIBLE
+            </b>
+
+        </div>
+
+
+        <div class="feas-card orange-card">
+
+            <span>
+                03
+            </span>
+
+            <h3>
+                Key Challenges
+            </h3>
+
+            <p>
+                Limited subsurface visibility, vegetation,
+                cloud cover, false positives and regional
+                geological variation.
+            </p>
+
+            <b>
+                VALIDATION REQUIRED
+            </b>
+
+        </div>
+
+
+        <div class="feas-card green-card">
+
+            <span>
+                04
+            </span>
+
+            <h3>
+                Solutions
+            </h3>
+
+            <p>
+                Multi-source fusion, SAR, multi-temporal
+                imagery, preprocessing, robust ML,
+                calibration and field validation.
+            </p>
+
+            <b>
+                ROBUST PIPELINE
+            </b>
+
+        </div>
+
+
+        <div class="feas-card purple-card">
+
+            <span>
+                05
+            </span>
+
+            <h3>
+                Viability
+            </h3>
+
+            <p>
+                Faster target identification, lower
+                unnecessary exploration effort and scalability
+                to other critical minerals.
+            </p>
+
+            <b>
+                HIGH POTENTIAL
+            </b>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <span>
+        ECHO • AI/ML & Space Technology for Manganese Mining
+    </span>
+
+    <span>
+        SIH 2026 • Problem Statement 26009
+    </span>
+
+</footer>
+
+
+</main>
+
+
+
+<!-- TOAST -->
+
+<div id="toast"></div>
+
+
+
+<!-- Leaflet JavaScript -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<!-- Your JavaScript -->
+
+<script src="script.js"></script>
+
 
 </body>
 
