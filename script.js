@@ -1,13 +1,119 @@
+```javascript
 /* =========================================
    ECHO FRONTEND
    ========================================= */
 
 
-/* PAGE NAVIGATION */
+/* =========================================
+   REAL-WORLD MANGANESE LOCATIONS
+   ========================================= */
+
+/*
+   ECHO prototype location data.
+
+   These are real-world manganese-bearing areas
+   in Balaghat district, Madhya Pradesh.
+
+   NOTE:
+   These coordinates are used as prototype
+   visualization points. They are NOT mine-boundary
+   survey coordinates.
+*/
+
+const manganeseLocations = [
+
+    {
+        name: "Balaghat",
+        state: "Madhya Pradesh",
+        latitude: 21.8129,
+        longitude: 80.1838,
+        mineral: "Manganese",
+        prospectivity: "Very High"
+    },
+
+    {
+        name: "Tirodi",
+        state: "Madhya Pradesh",
+        latitude: 21.688,
+        longitude: 79.950,
+        mineral: "Manganese",
+        prospectivity: "High"
+    },
+
+    {
+        name: "Bharweli",
+        state: "Madhya Pradesh",
+        latitude: 21.810,
+        longitude: 80.190,
+        mineral: "Manganese",
+        prospectivity: "High"
+    },
+
+    {
+        name: "Sitapatore",
+        state: "Madhya Pradesh",
+        latitude: 21.78,
+        longitude: 80.10,
+        mineral: "Manganese",
+        prospectivity: "Medium"
+    }
+
+];
+
+
+/* =========================================
+   DISPLAY REAL LOCATION INFORMATION
+   ========================================= */
+
+function displayManganeseLocations() {
+
+    const locations =
+        document.querySelectorAll(".location");
+
+    if (!locations.length) return;
+
+
+    /*
+       Replace the old fictional labels with
+       real-world manganese locations.
+    */
+
+    const names = manganeseLocations.map(
+        location =>
+            `${location.name}, ${location.state}`
+    );
+
+
+    locations.forEach(
+        (element, index) => {
+
+            if (names[index]) {
+
+                element.innerHTML =
+                    `📍 ${names[index]}`;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* Run location update */
+
+displayManganeseLocations();
+
+
+/* =========================================
+   PAGE NAVIGATION
+   ========================================= */
 
 function showPage(pageId, clickedButton) {
 
-    const pages = document.querySelectorAll(".page");
+    const pages =
+        document.querySelectorAll(".page");
+
 
     pages.forEach(page => {
 
@@ -18,6 +124,7 @@ function showPage(pageId, clickedButton) {
 
     const selectedPage =
         document.getElementById(pageId);
+
 
     if (selectedPage) {
 
@@ -31,34 +138,13 @@ function showPage(pageId, clickedButton) {
     const buttons =
         document.querySelectorAll(".menu");
 
+
     buttons.forEach(button => {
 
         button.classList.remove("active");
 
     });
-    const manganeseLocations = [
-    {
-        name: "Balaghat",
-        state: "Madhya Pradesh",
-        latitude: 21.8129,
-        longitude: 80.1838,
-        mineral: "Manganese"
-    },
-    {
-        name: "Tirodi",
-        state: "Madhya Pradesh",
-        latitude: 21.688,
-        longitude: 79.950,
-        mineral: "Manganese"
-    },
-    {
-        name: "Bharweli",
-        state: "Madhya Pradesh",
-        latitude: 21.810,
-        longitude: 80.190,
-        mineral: "Manganese"
-    }
-];
+
 
     if (clickedButton) {
 
@@ -68,8 +154,10 @@ function showPage(pageId, clickedButton) {
 
 
     window.scrollTo({
+
         top: 0,
         behavior: "smooth"
+
     });
 
 }
@@ -84,8 +172,13 @@ function runAI() {
     const button =
         document.querySelector(".hero .primary");
 
+
+    if (!button) return;
+
+
     button.innerHTML =
         "⟳ Running AI Analysis...";
+
 
     button.disabled = true;
 
@@ -97,9 +190,17 @@ function runAI() {
 
     setTimeout(() => {
 
-        document.getElementById(
-            "reserveValue"
-        ).innerHTML = "486.2 Mt";
+
+        const reserveValue =
+            document.getElementById("reserveValue");
+
+
+        if (reserveValue) {
+
+            reserveValue.innerHTML =
+                "486.2 Mt";
+
+        }
 
 
         button.innerHTML =
@@ -121,6 +222,7 @@ function runAI() {
 
         }, 2500);
 
+
     }, 2500);
 
 }
@@ -136,7 +238,11 @@ function showToast(message) {
         document.getElementById("toast");
 
 
-    toast.innerText = message;
+    if (!toast) return;
+
+
+    toast.innerText =
+        message;
 
 
     toast.classList.add("show");
@@ -160,6 +266,7 @@ function createChart(canvasId) {
     const canvas =
         document.getElementById(canvasId);
 
+
     if (!canvas) return;
 
 
@@ -170,7 +277,9 @@ function createChart(canvasId) {
     const width =
         canvas.clientWidth;
 
-    const height = 260;
+
+    const height =
+        260;
 
 
     const ratio =
@@ -179,6 +288,7 @@ function createChart(canvasId) {
 
     canvas.width =
         width * ratio;
+
 
     canvas.height =
         height * ratio;
@@ -270,10 +380,12 @@ function createChart(canvasId) {
     /* Clear */
 
     ctx.clearRect(
+
         0,
         0,
         width,
         height
+
     );
 
 
@@ -282,23 +394,37 @@ function createChart(canvasId) {
     ctx.strokeStyle =
         "#e8edf2";
 
-    ctx.lineWidth = 1;
+
+    ctx.lineWidth =
+        1;
 
 
-    [12, 15, 18, 21].forEach(
+    [
+        12,
+        15,
+        18,
+        21
+    ].forEach(
         value => {
 
             ctx.beginPath();
 
+
             ctx.moveTo(
+
                 left,
                 Y(value)
+
             );
 
+
             ctx.lineTo(
+
                 width - right,
                 Y(value)
+
             );
+
 
             ctx.stroke();
 
@@ -306,13 +432,17 @@ function createChart(canvasId) {
             ctx.fillStyle =
                 "#8b9aaa";
 
+
             ctx.font =
                 "9px Arial";
 
+
             ctx.fillText(
+
                 value,
                 8,
                 Y(value) + 3
+
             );
 
         }
@@ -336,15 +466,19 @@ function createChart(canvasId) {
                 if (index === 0) {
 
                     ctx.moveTo(
+
                         X(index),
                         Y(value)
+
                     );
 
                 } else {
 
                     ctx.lineTo(
+
                         X(index),
                         Y(value)
+
                     );
 
                 }
@@ -356,8 +490,10 @@ function createChart(canvasId) {
         if (dashed) {
 
             ctx.setLineDash([
+
                 5,
                 5
+
             ]);
 
         }
@@ -366,7 +502,9 @@ function createChart(canvasId) {
         ctx.strokeStyle =
             lineColor;
 
-        ctx.lineWidth = 2;
+
+        ctx.lineWidth =
+            2;
 
 
         ctx.stroke();
@@ -382,16 +520,21 @@ function createChart(canvasId) {
 
                 ctx.beginPath();
 
+
                 ctx.arc(
+
                     X(index),
                     Y(value),
                     3,
                     0,
                     Math.PI * 2
+
                 );
+
 
                 ctx.fillStyle =
                     lineColor;
+
 
                 ctx.fill();
 
@@ -402,16 +545,20 @@ function createChart(canvasId) {
 
 
     drawLine(
+
         actual,
         false,
         "#1677aa"
+
     );
 
 
     drawLine(
+
         predicted,
         true,
         "#8059bb"
+
     );
 
 
@@ -438,6 +585,7 @@ function createChart(canvasId) {
     ctx.fillStyle =
         "#8b9aaa";
 
+
     ctx.font =
         "8px Arial";
 
@@ -446,9 +594,11 @@ function createChart(canvasId) {
         (month, index) => {
 
             ctx.fillText(
+
                 month,
                 X(index) - 8,
                 height - 10
+
             );
 
         }
@@ -460,63 +610,133 @@ function createChart(canvasId) {
     ctx.fillStyle =
         "#1677aa";
 
+
     ctx.fillRect(
+
         width - 140,
         10,
         9,
         2
+
     );
 
 
     ctx.fillStyle =
         "#66798a";
 
+
     ctx.fillText(
+
         "Actual",
         width - 125,
         13
+
     );
 
 
     ctx.fillStyle =
         "#8059bb";
 
+
     ctx.fillRect(
+
         width - 75,
         10,
         9,
         2
+
     );
 
 
     ctx.fillStyle =
         "#66798a";
 
+
     ctx.fillText(
+
         "Predicted",
         width - 60,
         13
+
     );
 
 }
 
 
-/* Create charts */
+/* =========================================
+   CREATE CHARTS
+   ========================================= */
 
-createChart("productionChart");
+createChart(
+    "productionChart"
+);
 
-createChart("productionChart2");
+
+createChart(
+    "productionChart2"
+);
 
 
-/* Redraw on resize */
+/* =========================================
+   REDRAW CHARTS ON RESIZE
+   ========================================= */
 
 window.addEventListener(
+
     "resize",
+
     () => {
 
-        createChart("productionChart");
+        createChart(
+            "productionChart"
+        );
 
-        createChart("productionChart2");
+
+        createChart(
+            "productionChart2"
+        );
 
     }
+
 );
+
+
+/* =========================================
+   REAL LOCATION INFORMATION
+   ========================================= */
+
+/*
+   This function can be used later when you
+   connect ECHO to a real map/API.
+
+   Example:
+
+   showLocation(0)
+
+   will show Balaghat information.
+*/
+
+function showLocation(index) {
+
+    const location =
+        manganeseLocations[index];
+
+
+    if (!location) return;
+
+
+    showToast(
+
+        `${location.name}, ${location.state} | ` +
+        `${location.mineral} | ` +
+        `${location.prospectivity} prospectivity`
+
+    );
+
+}
+
+
+/* =========================================
+   CONSOLE INFORMATION
+   =========================
+```
