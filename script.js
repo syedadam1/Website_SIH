@@ -1,4 +1,3 @@
-```javascript
 /* =========================================
    ECHO FRONTEND
    ========================================= */
@@ -9,100 +8,112 @@
    ========================================= */
 
 /*
-   ECHO prototype location data.
+   Prototype locations in India.
 
-   These are real-world manganese-bearing areas
-   in Balaghat district, Madhya Pradesh.
+   These points represent manganese-bearing
+   regions/areas used for the SIH prototype.
 
-   NOTE:
-   These coordinates are used as prototype
-   visualization points. They are NOT mine-boundary
-   survey coordinates.
+   They should NOT be interpreted as exact
+   mine-boundary survey coordinates.
 */
 
 const manganeseLocations = [
 
     {
+        id: "balaghat",
+
         name: "Balaghat",
+
         state: "Madhya Pradesh",
+
         latitude: 21.8129,
+
         longitude: 80.1838,
+
         mineral: "Manganese",
-        prospectivity: "Very High"
+
+        prospectivity: "Very High",
+
+        description:
+            "Manganese-bearing region in Balaghat district, Madhya Pradesh."
     },
 
+
     {
+        id: "tirodi",
+
         name: "Tirodi",
+
         state: "Madhya Pradesh",
+
         latitude: 21.688,
+
         longitude: 79.950,
+
         mineral: "Manganese",
-        prospectivity: "High"
+
+        prospectivity: "High",
+
+        description:
+            "Manganese-bearing area associated with the Balaghat mineral belt."
     },
 
+
     {
+        id: "bharweli",
+
         name: "Bharweli",
+
         state: "Madhya Pradesh",
+
         latitude: 21.810,
+
         longitude: 80.190,
+
         mineral: "Manganese",
-        prospectivity: "High"
+
+        prospectivity: "High",
+
+        description:
+            "Manganese-bearing area in the Balaghat region."
     },
 
+
     {
+        id: "sitapatore",
+
         name: "Sitapatore",
+
         state: "Madhya Pradesh",
-        latitude: 21.78,
-        longitude: 80.10,
+
+        latitude: 21.780,
+
+        longitude: 80.100,
+
         mineral: "Manganese",
-        prospectivity: "Medium"
+
+        prospectivity: "Medium",
+
+        description:
+            "Manganese-bearing area used as a prototype exploration point."
     }
 
 ];
 
 
+
 /* =========================================
-   DISPLAY REAL LOCATION INFORMATION
+   MAP VARIABLES
    ========================================= */
 
-function displayManganeseLocations() {
+let dashboardMap = null;
 
-    const locations =
-        document.querySelectorAll(".location");
+let reserveMap = null;
 
-    if (!locations.length) return;
+let dashboardMarkers = [];
 
+let reserveMarkers = [];
 
-    /*
-       Replace the old fictional labels with
-       real-world manganese locations.
-    */
-
-    const names = manganeseLocations.map(
-        location =>
-            `${location.name}, ${location.state}`
-    );
-
-
-    locations.forEach(
-        (element, index) => {
-
-            if (names[index]) {
-
-                element.innerHTML =
-                    `📍 ${names[index]}`;
-
-            }
-
-        }
-    );
-
-}
-
-
-/* Run location update */
-
-displayManganeseLocations();
 
 
 /* =========================================
@@ -133,8 +144,6 @@ function showPage(pageId, clickedButton) {
     }
 
 
-    /* Update sidebar */
-
     const buttons =
         document.querySelectorAll(".menu");
 
@@ -156,11 +165,36 @@ function showPage(pageId, clickedButton) {
     window.scrollTo({
 
         top: 0,
+
         behavior: "smooth"
 
     });
 
+
+    /*
+       Leaflet sometimes needs a resize calculation
+       when its container was hidden.
+    */
+
+    setTimeout(() => {
+
+        if (dashboardMap) {
+
+            dashboardMap.invalidateSize();
+
+        }
+
+
+        if (reserveMap) {
+
+            reserveMap.invalidateSize();
+
+        }
+
+    }, 200);
+
 }
+
 
 
 /* =========================================
@@ -189,7 +223,6 @@ function runAI() {
 
 
     setTimeout(() => {
-
 
         const reserveValue =
             document.getElementById("reserveValue");
@@ -222,14 +255,14 @@ function runAI() {
 
         }, 2500);
 
-
     }, 2500);
 
 }
 
 
+
 /* =========================================
-   TOAST MESSAGE
+   TOAST
    ========================================= */
 
 function showToast(message) {
@@ -255,6 +288,752 @@ function showToast(message) {
     }, 3000);
 
 }
+
+
+
+/* =========================================
+   CREATE POPUP
+   ========================================= */
+
+function createLocationPopup(location) {
+
+    return `
+
+        <div class="location-popup">
+
+            <h3>
+                📍 ${location.name}
+            </h3>
+
+            <p>
+                <b>State:</b>
+                ${location.state}
+            </p>
+
+            <p>
+                <b>Mineral:</b>
+                ${location.mineral}
+            </p>
+
+            <p>
+                <b>Prospectivity:</b>
+
+                <span class="high">
+                    ${location.prospectivity}
+                </span>
+
+            </p>
+
+            <p>
+                <b>Latitude:</b>
+                ${location.latitude}
+            </p>
+
+            <p>
+                <b>Longitude:</b>
+                ${location.longitude}
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =========================================
+   MAP MARKER ICON
+   ========================================= */
+
+function createMarkerIcon(prospectivity) {
+
+    let color =
+        "#16845b";
+
+
+    if (prospectivity === "Very High") {
+
+        color =
+            "#d83b20";
+
+    }
+
+    else if (prospectivity === "High") {
+
+        color =
+            "#df7217";
+
+    }
+
+    else if (prospectivity === "Medium") {
+
+        color =
+            "#e2ae19";
+
+    }
+
+
+    return L.divIcon({
+
+        className:
+            "custom-map-marker",
+
+        html: `
+
+            <div style="
+
+                width:18px;
+
+                height:18px;
+
+                border-radius:50%;
+
+                background:${color};
+
+                border:3px solid white;
+
+                box-shadow:
+                    0 2px 8px rgba(0,0,0,0.4);
+
+            "></div>
+
+        `,
+
+        iconSize:
+            [18, 18],
+
+        iconAnchor:
+            [9, 9]
+
+    });
+
+}
+
+
+
+/* =========================================
+   CREATE DASHBOARD MAP
+   ========================================= */
+
+function createDashboardMap() {
+
+    const mapElement =
+        document.getElementById("dashboardMap");
+
+
+    if (!mapElement) return;
+
+
+    if (dashboardMap) {
+
+        return;
+
+    }
+
+
+    /*
+       Center on Balaghat / central India.
+    */
+
+    dashboardMap =
+        L.map("dashboardMap");
+
+
+    dashboardMap.setView(
+
+        [
+            21.8129,
+            80.1838
+        ],
+
+        8
+
+    );
+
+
+    L.tileLayer(
+
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+        {
+
+            maxZoom: 19,
+
+            attribution:
+                "&copy; OpenStreetMap contributors"
+
+        }
+
+    ).addTo(dashboardMap);
+
+
+    manganeseLocations.forEach(
+
+        location => {
+
+            const marker =
+                L.marker(
+
+                    [
+                        location.latitude,
+                        location.longitude
+                    ],
+
+                    {
+                        icon:
+                            createMarkerIcon(
+                                location.prospectivity
+                            )
+                    }
+
+                );
+
+
+            marker
+                .addTo(dashboardMap)
+                .bindPopup(
+                    createLocationPopup(location)
+                );
+
+
+            dashboardMarkers.push(marker);
+
+        }
+
+    );
+
+}
+
+
+
+/* =========================================
+   CREATE RESERVE MAP
+   ========================================= */
+
+function createReserveMap() {
+
+    const mapElement =
+        document.getElementById("reserveMap");
+
+
+    if (!mapElement) return;
+
+
+    if (reserveMap) {
+
+        return;
+
+    }
+
+
+    reserveMap =
+        L.map("reserveMap");
+
+
+    reserveMap.setView(
+
+        [
+            21.8129,
+            80.1838
+        ],
+
+        8
+
+    );
+
+
+    L.tileLayer(
+
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+
+        {
+
+            maxZoom: 19,
+
+            attribution:
+                "&copy; OpenStreetMap contributors"
+
+        }
+
+    ).addTo(reserveMap);
+
+
+    manganeseLocations.forEach(
+
+        (location, index) => {
+
+            const marker =
+                L.marker(
+
+                    [
+                        location.latitude,
+                        location.longitude
+                    ],
+
+                    {
+
+                        icon:
+                            createMarkerIcon(
+                                location.prospectivity
+                            )
+
+                    }
+
+                );
+
+
+            marker
+                .addTo(reserveMap)
+                .bindPopup(
+                    createLocationPopup(location)
+                );
+
+
+            marker.on(
+
+                "click",
+
+                () => {
+
+                    updateLocationInfo(
+                        location
+                    );
+
+                }
+
+            );
+
+
+            reserveMarkers[index] =
+                marker;
+
+        }
+
+    );
+
+
+    /*
+       Show all points.
+    */
+
+    const bounds =
+        L.latLngBounds(
+
+            manganeseLocations.map(
+                location => [
+
+                    location.latitude,
+
+                    location.longitude
+
+                ]
+            )
+
+        );
+
+
+    reserveMap.fitBounds(
+
+        bounds,
+
+        {
+            padding: [30, 30]
+        }
+
+    );
+
+}
+
+
+
+/* =========================================
+   UPDATE LOCATION INFORMATION
+   ========================================= */
+
+function updateLocationInfo(location) {
+
+    const title =
+        document.getElementById(
+            "selectedLocation"
+        );
+
+
+    const info =
+        document.getElementById(
+            "selectedLocationInfo"
+        );
+
+
+    if (title) {
+
+        title.innerText =
+            `${location.name}, ${location.state}`;
+
+    }
+
+
+    if (info) {
+
+        info.innerHTML = `
+
+            ${location.description}
+
+            <br><br>
+
+            <b>
+                Coordinates:
+            </b>
+
+            ${location.latitude},
+            ${location.longitude}
+
+            <br>
+
+            <b>
+                Prospectivity:
+            </b>
+
+            ${location.prospectivity}
+
+        `;
+
+    }
+
+}
+
+
+
+/* =========================================
+   FOCUS LOCATION
+   ========================================= */
+
+function focusLocation(index) {
+
+    const location =
+        manganeseLocations[index];
+
+
+    if (!location) return;
+
+
+    /*
+       Open Reserve Map.
+    */
+
+    showPage("reserve");
+
+
+    /*
+       Wait until map becomes visible.
+    */
+
+    setTimeout(() => {
+
+        if (!reserveMap) {
+
+            createReserveMap();
+
+        }
+
+
+        reserveMap.invalidateSize();
+
+
+        reserveMap.setView(
+
+            [
+                location.latitude,
+                location.longitude
+            ],
+
+            11
+
+        );
+
+
+        if (reserveMarkers[index]) {
+
+            reserveMarkers[index].openPopup();
+
+        }
+
+
+        updateLocationInfo(
+            location
+        );
+
+    }, 300);
+
+}
+
+
+
+/* =========================================
+   LOCATION TABLE
+   ========================================= */
+
+function populateLocationTable() {
+
+    const table =
+        document.getElementById(
+            "locationTable"
+        );
+
+
+    if (!table) return;
+
+
+    table.innerHTML = "";
+
+
+    manganeseLocations.forEach(
+
+        (location, index) => {
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td class="location-name">
+
+                    ${location.name}
+
+                </td>
+
+
+                <td class="location-state">
+
+                    ${location.state}
+
+                </td>
+
+
+                <td>
+
+                    <span class="badge">
+
+                        ${location.prospectivity}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${location.latitude}
+
+                </td>
+
+
+                <td>
+
+                    ${location.longitude}
+
+                </td>
+
+
+                <td>
+
+                    ${location.mineral}
+
+                </td>
+
+            `;
+
+
+            row.style.cursor =
+                "pointer";
+
+
+            row.addEventListener(
+
+                "click",
+
+                () => {
+
+                    focusLocation(index);
+
+                }
+
+            );
+
+
+            table.appendChild(row);
+
+        }
+
+    );
+
+}
+
+
+
+/* =========================================
+   MAP FILTER
+   ========================================= */
+
+function applyMapFilters() {
+
+    const regionFilter =
+        document.getElementById(
+            "regionFilter"
+        );
+
+
+    const prospectivityFilter =
+        document.getElementById(
+            "prospectivityFilter"
+        );
+
+
+    if (!regionFilter ||
+        !prospectivityFilter) {
+
+        return;
+
+    }
+
+
+    const region =
+        regionFilter.value;
+
+
+    const prospectivity =
+        prospectivityFilter.value;
+
+
+    manganeseLocations.forEach(
+
+        (location, index) => {
+
+            let visible =
+                true;
+
+
+            if (
+                region !== "all" &&
+                location.id !== region
+            ) {
+
+                visible =
+                    false;
+
+            }
+
+
+            if (
+                prospectivity !== "all" &&
+                location.prospectivity !==
+                    prospectivity
+            ) {
+
+                visible =
+                    false;
+
+            }
+
+
+            const marker =
+                reserveMarkers[index];
+
+
+            if (!marker ||
+                !reserveMap) {
+
+                return;
+
+            }
+
+
+            if (visible) {
+
+                if (
+                    !reserveMap.hasLayer(
+                        marker
+                    )
+                ) {
+
+                    marker.addTo(
+                        reserveMap
+                    );
+
+                }
+
+            }
+
+            else {
+
+                if (
+                    reserveMap.hasLayer(
+                        marker
+                    )
+                ) {
+
+                    reserveMap.removeLayer(
+                        marker
+                    );
+
+                }
+
+            }
+
+        }
+
+    );
+
+}
+
+
+
+/* =========================================
+   FILTER EVENTS
+   ========================================= */
+
+function setupFilters() {
+
+    const regionFilter =
+        document.getElementById(
+            "regionFilter"
+        );
+
+
+    const prospectivityFilter =
+        document.getElementById(
+            "prospectivityFilter"
+        );
+
+
+    if (regionFilter) {
+
+        regionFilter.addEventListener(
+
+            "change",
+
+            applyMapFilters
+
+        );
+
+    }
+
+
+    if (prospectivityFilter) {
+
+        prospectivityFilter.addEventListener(
+
+            "change",
+
+            applyMapFilters
+
+        );
+
+    }
+
+}
+
 
 
 /* =========================================
@@ -294,7 +1073,10 @@ function createChart(canvasId) {
         height * ratio;
 
 
-    ctx.scale(ratio, ratio);
+    ctx.scale(
+        ratio,
+        ratio
+    );
 
 
     const actual = [
@@ -350,12 +1132,15 @@ function createChart(canvasId) {
     function X(index) {
 
         return left +
+
             index *
+
             (
                 width -
                 left -
                 right
             ) /
+
             (actual.length - 1);
 
     }
@@ -364,20 +1149,21 @@ function createChart(canvasId) {
     function Y(value) {
 
         return top +
+
             (
                 max - value
             ) *
+
             (
                 height -
                 top -
                 bottom
             ) /
+
             (max - min);
 
     }
 
-
-    /* Clear */
 
     ctx.clearRect(
 
@@ -389,7 +1175,9 @@ function createChart(canvasId) {
     );
 
 
-    /* Grid */
+    /*
+       Grid
+    */
 
     ctx.strokeStyle =
         "#e8edf2";
@@ -404,7 +1192,9 @@ function createChart(canvasId) {
         15,
         18,
         21
+
     ].forEach(
+
         value => {
 
             ctx.beginPath();
@@ -446,21 +1236,27 @@ function createChart(canvasId) {
             );
 
         }
+
     );
 
 
-    /* Draw function */
+    /*
+       Draw line
+    */
 
     function drawLine(
+
         data,
         dashed,
         lineColor
+
     ) {
 
         ctx.beginPath();
 
 
         data.forEach(
+
             (value, index) => {
 
                 if (index === 0) {
@@ -472,7 +1268,9 @@ function createChart(canvasId) {
 
                     );
 
-                } else {
+                }
+
+                else {
 
                     ctx.lineTo(
 
@@ -484,17 +1282,15 @@ function createChart(canvasId) {
                 }
 
             }
+
         );
 
 
         if (dashed) {
 
-            ctx.setLineDash([
-
-                5,
-                5
-
-            ]);
+            ctx.setLineDash(
+                [5, 5]
+            );
 
         }
 
@@ -513,9 +1309,8 @@ function createChart(canvasId) {
         ctx.setLineDash([]);
 
 
-        /* Points */
-
         data.forEach(
+
             (value, index) => {
 
                 ctx.beginPath();
@@ -539,6 +1334,7 @@ function createChart(canvasId) {
                 ctx.fill();
 
             }
+
         );
 
     }
@@ -562,7 +1358,9 @@ function createChart(canvasId) {
     );
 
 
-    /* Months */
+    /*
+       Months
+    */
 
     const months = [
 
@@ -591,6 +1389,7 @@ function createChart(canvasId) {
 
 
     months.forEach(
+
         (month, index) => {
 
             ctx.fillText(
@@ -602,10 +1401,13 @@ function createChart(canvasId) {
             );
 
         }
+
     );
 
 
-    /* Legend */
+    /*
+       Legend
+    */
 
     ctx.fillStyle =
         "#1677aa";
@@ -663,23 +1465,87 @@ function createChart(canvasId) {
 }
 
 
+
 /* =========================================
-   CREATE CHARTS
+   EXPORT REPORT DEMO
    ========================================= */
 
-createChart(
-    "productionChart"
-);
+function exportReport() {
+
+    showToast(
+        "ECHO report generation started."
+    );
 
 
-createChart(
-    "productionChart2"
+    setTimeout(() => {
+
+        showToast(
+            "Prototype report ready."
+        );
+
+    }, 1200);
+
+}
+
+
+
+/* =========================================
+   INITIALIZATION
+   ========================================= */
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    () => {
+
+
+        /*
+           Create maps
+        */
+
+        createDashboardMap();
+
+
+        createReserveMap();
+
+
+        /*
+           Create location table
+        */
+
+        populateLocationTable();
+
+
+        /*
+           Setup filters
+        */
+
+        setupFilters();
+
+
+        /*
+           Create charts
+        */
+
+        createChart(
+            "productionChart"
+        );
+
+
+        createChart(
+            "productionChart2"
+        );
+
+    }
+
 );
+
 
 
 /* =========================================
    REDRAW CHARTS ON RESIZE
-   ========================================= */
+========================================= */
 
 window.addEventListener(
 
@@ -696,47 +1562,36 @@ window.addEventListener(
             "productionChart2"
         );
 
+
+        if (dashboardMap) {
+
+            dashboardMap.invalidateSize();
+
+        }
+
+
+        if (reserveMap) {
+
+            reserveMap.invalidateSize();
+
+        }
+
     }
 
 );
 
 
-/* =========================================
-   REAL LOCATION INFORMATION
-   ========================================= */
-
-/*
-   This function can be used later when you
-   connect ECHO to a real map/API.
-
-   Example:
-
-   showLocation(0)
-
-   will show Balaghat information.
-*/
-
-function showLocation(index) {
-
-    const location =
-        manganeseLocations[index];
-
-
-    if (!location) return;
-
-
-    showToast(
-
-        `${location.name}, ${location.state} | ` +
-        `${location.mineral} | ` +
-        `${location.prospectivity} prospectivity`
-
-    );
-
-}
-
 
 /* =========================================
-   CONSOLE INFORMATION
-   =========================
-```
+   CONSOLE
+========================================= */
+
+console.log(
+    "ECHO Control Tower initialized."
+);
+
+
+console.log(
+    "Manganese locations loaded:",
+    manganeseLocations
+);
