@@ -1042,23 +1042,55 @@ function setupFilters() {
 
 function createChart(canvasId) {
 
+    function createChart(canvasId) {
+
     const canvas =
         document.getElementById(canvasId);
 
+    if (!canvas) {
 
-    if (!canvas) return;
+        console.error(
+            "Canvas not found:",
+            canvasId
+        );
+
+        return;
+
+    }
 
 
     const ctx =
         canvas.getContext("2d");
 
+    if (!ctx) {
+
+        console.error(
+            "Could not get canvas context:",
+            canvasId
+        );
+
+        return;
+
+    }
+
 
     const width =
         canvas.clientWidth;
 
-
     const height =
         260;
+
+
+    if (width <= 0) {
+
+        console.error(
+            "Canvas has zero width:",
+            canvasId
+        );
+
+        return;
+
+    }
 
 
     const ratio =
@@ -1068,7 +1100,6 @@ function createChart(canvasId) {
     canvas.width =
         width * ratio;
 
-
     canvas.height =
         height * ratio;
 
@@ -1077,6 +1108,9 @@ function createChart(canvasId) {
         ratio,
         ratio
     );
+
+    // KEEP THE REST OF YOUR EXISTING
+    // createChart() CODE BELOW THIS
 
 
     const actual = [
@@ -1491,56 +1525,60 @@ function exportReport() {
 
 /* =========================================
    INITIALIZATION
-   ========================================= */
+========================================= */
 
 document.addEventListener(
-
     "DOMContentLoaded",
-
     () => {
 
-
         /*
-           Create maps
+           CREATE CHARTS FIRST
+           ------------------
+           Even if the map has an issue,
+           the charts will still work.
         */
 
-        createDashboardMap();
+        createChart("productionChart");
 
-
-        createReserveMap();
+        createChart("productionChart2");
 
 
         /*
-           Create location table
+           LOCATION TABLE
         */
 
         populateLocationTable();
 
 
         /*
-           Setup filters
+           FILTERS
         */
 
         setupFilters();
 
 
         /*
-           Create charts
+           CREATE MAPS
         */
 
-        createChart(
-            "productionChart"
-        );
+        if (typeof L !== "undefined") {
 
+            createDashboardMap();
 
-        createChart(
-            "productionChart2"
-        );
+            createReserveMap();
+
+        }
+
+        else {
+
+            console.error(
+                "Leaflet failed to load. Maps cannot be initialized."
+            );
+
+        }
 
     }
-
 );
-
 
 
 /* =========================================
